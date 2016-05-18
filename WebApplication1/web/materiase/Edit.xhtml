@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="MateriaseEditDlg" widgetVar="MateriaseEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditMateriaseTitle}">
+            <h:form id="MateriaseEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{materiaseController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditMateriaseLabel_idMateriaE}" for="idMateriaE" />
+                        <p:inputText id="idMateriaE" value="#{materiaseController.selected.idMateriaE}" title="#{bundle.EditMateriaseTitle_idMateriaE}" required="true" requiredMessage="#{bundle.EditMateriaseRequiredMessage_idMateriaE}"/>
+                        <p:outputLabel value="#{bundle.EditMateriaseLabel_nombreE}" for="nombreE" />
+                        <p:inputText id="nombreE" value="#{materiaseController.selected.nombreE}" title="#{bundle.EditMateriaseTitle_nombreE}" required="true" requiredMessage="#{bundle.EditMateriaseRequiredMessage_nombreE}"/>
+                        <p:outputLabel value="#{bundle.EditMateriaseLabel_porcentaje}" for="porcentaje" />
+                        <p:inputText id="porcentaje" value="#{materiaseController.selected.porcentaje}" title="#{bundle.EditMateriaseTitle_porcentaje}" />
+                        <p:outputLabel value="#{bundle.EditMateriaseLabel_idMateriaI}" for="idMateriaI" />
+                        <p:selectOneMenu id="idMateriaI" value="#{materiaseController.selected.idMateriaI}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{materiasiController.itemsAvailableSelectOne}"
+                                           var="idMateriaIItem"
+                                           itemValue="#{idMateriaIItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditMateriaseLabel_idPlanE}" for="idPlanE" />
+                        <p:selectOneMenu id="idPlanE" value="#{materiaseController.selected.idPlanE}" required="true" requiredMessage="#{bundle.EditMateriaseRequiredMessage_idPlanE}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{planeseController.itemsAvailableSelectOne}"
+                                           var="idPlanEItem"
+                                           itemValue="#{idPlanEItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{materiaseController.update}" value="#{bundle.Save}" update="display,:MateriaseListForm:datalist,:growl" oncomplete="handleSubmit(args, 'MateriaseEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="MateriaseEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

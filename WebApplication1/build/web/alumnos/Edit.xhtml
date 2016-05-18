@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="AlumnosEditDlg" widgetVar="AlumnosEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditAlumnosTitle}">
+            <h:form id="AlumnosEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{alumnosController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditAlumnosLabel_idAlumno}" for="idAlumno" />
+                        <p:inputText id="idAlumno" value="#{alumnosController.selected.idAlumno}" title="#{bundle.EditAlumnosTitle_idAlumno}" required="true" requiredMessage="#{bundle.EditAlumnosRequiredMessage_idAlumno}"/>
+                        <p:outputLabel value="#{bundle.EditAlumnosLabel_nombre}" for="nombre" />
+                        <p:inputText id="nombre" value="#{alumnosController.selected.nombre}" title="#{bundle.EditAlumnosTitle_nombre}" required="true" requiredMessage="#{bundle.EditAlumnosRequiredMessage_nombre}"/>
+                        <p:outputLabel value="#{bundle.EditAlumnosLabel_apePaterno}" for="apePaterno" />
+                        <p:inputText id="apePaterno" value="#{alumnosController.selected.apePaterno}" title="#{bundle.EditAlumnosTitle_apePaterno}" required="true" requiredMessage="#{bundle.EditAlumnosRequiredMessage_apePaterno}"/>
+                        <p:outputLabel value="#{bundle.EditAlumnosLabel_apeMaterno}" for="apeMaterno" />
+                        <p:inputText id="apeMaterno" value="#{alumnosController.selected.apeMaterno}" title="#{bundle.EditAlumnosTitle_apeMaterno}" required="true" requiredMessage="#{bundle.EditAlumnosRequiredMessage_apeMaterno}"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{alumnosController.update}" value="#{bundle.Save}" update="display,:AlumnosListForm:datalist,:growl" oncomplete="handleSubmit(args, 'AlumnosEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="AlumnosEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

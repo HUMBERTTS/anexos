@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="MateriasiCreateDlg" widgetVar="MateriasiCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateMateriasiTitle}">
+            <h:form id="MateriasiCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{materiasiController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateMateriasiLabel_idMateriaI}" for="idMateriaI" />
+                        <p:inputText id="idMateriaI" value="#{materiasiController.selected.idMateriaI}" title="#{bundle.CreateMateriasiTitle_idMateriaI}" required="true" requiredMessage="#{bundle.CreateMateriasiRequiredMessage_idMateriaI}"/>
+                        <p:outputLabel value="#{bundle.CreateMateriasiLabel_nombre}" for="nombre" />
+                        <p:inputText id="nombre" value="#{materiasiController.selected.nombre}" title="#{bundle.CreateMateriasiTitle_nombre}" required="true" requiredMessage="#{bundle.CreateMateriasiRequiredMessage_nombre}"/>
+                        <p:outputLabel value="#{bundle.CreateMateriasiLabel_clave}" for="clave" />
+                        <p:inputText id="clave" value="#{materiasiController.selected.clave}" title="#{bundle.CreateMateriasiTitle_clave}" required="true" requiredMessage="#{bundle.CreateMateriasiRequiredMessage_clave}"/>
+                        <p:outputLabel value="#{bundle.CreateMateriasiLabel_creditos}" for="creditos" />
+                        <p:inputText id="creditos" value="#{materiasiController.selected.creditos}" title="#{bundle.CreateMateriasiTitle_creditos}" required="true" requiredMessage="#{bundle.CreateMateriasiRequiredMessage_creditos}"/>
+                        <p:outputLabel value="#{bundle.CreateMateriasiLabel_idPlanI}" for="idPlanI" />
+                        <p:selectOneMenu id="idPlanI" value="#{materiasiController.selected.idPlanI}" required="true" requiredMessage="#{bundle.EditMateriasiRequiredMessage_idPlanI}">
+                            <f:selectItems value="#{planesiController.itemsAvailableSelectOne}"
+                                           var="idPlanIItem"
+                                           itemValue="#{idPlanIItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{materiasiController.create}" value="#{bundle.Save}" update="display,:MateriasiListForm:datalist,:growl" oncomplete="handleSubmit(args,'MateriasiCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="MateriasiCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

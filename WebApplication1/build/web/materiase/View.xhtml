@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="MateriaseViewDlg" widgetVar="MateriaseViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewMateriaseTitle}">
+            <h:form id="MateriaseViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{materiaseController.selected != null}">
+                        <h:outputText value="#{bundle.ViewMateriaseLabel_idMateriaE}"/>
+                        <h:outputText value="#{materiaseController.selected.idMateriaE}" title="#{bundle.ViewMateriaseTitle_idMateriaE}"/>
+                        <h:outputText value="#{bundle.ViewMateriaseLabel_nombreE}"/>
+                        <h:outputText value="#{materiaseController.selected.nombreE}" title="#{bundle.ViewMateriaseTitle_nombreE}"/>
+                        <h:outputText value="#{bundle.ViewMateriaseLabel_porcentaje}"/>
+                        <h:outputText value="#{materiaseController.selected.porcentaje}" title="#{bundle.ViewMateriaseTitle_porcentaje}"/>
+                        <h:outputText value="#{bundle.ViewMateriaseLabel_idMateriaI}"/>
+                        <h:outputText value="#{materiaseController.selected.idMateriaI}" title="#{bundle.ViewMateriaseTitle_idMateriaI}"/>
+                        <h:outputText value="#{bundle.ViewMateriaseLabel_idPlanE}"/>
+                        <h:outputText value="#{materiaseController.selected.idPlanE}" title="#{bundle.ViewMateriaseTitle_idPlanE}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="MateriaseViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="PlanesiCreateDlg" widgetVar="PlanesiCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreatePlanesiTitle}">
+            <h:form id="PlanesiCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{planesiController.selected != null}">
+                        
+                        <p:outputLabel value="#{bundle.CreatePlanesiLabel_clave}" for="clave" />
+                        <p:inputText id="clave" value="#{planesiController.selected.clave}" title="#{bundle.CreatePlanesiTitle_clave}" required="true" requiredMessage="#{bundle.CreatePlanesiRequiredMessage_clave}"/>
+                        <p:outputLabel value="#{bundle.CreatePlanesiLabel_nombre}" for="nombre" />
+                        <p:inputText id="nombre" value="#{planesiController.selected.nombre}" title="#{bundle.CreatePlanesiTitle_nombre}" required="true" requiredMessage="#{bundle.CreatePlanesiRequiredMessage_nombre}"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{planesiController.create}" value="#{bundle.Save}" update="display,:PlanesiListForm:datalist,:growl" oncomplete="handleSubmit(args,'PlanesiCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="PlanesiCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="MateriasiViewDlg" widgetVar="MateriasiViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewMateriasiTitle}">
+            <h:form id="MateriasiViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{materiasiController.selected != null}">
+                        <h:outputText value="#{bundle.ViewMateriasiLabel_idMateriaI}"/>
+                        <h:outputText value="#{materiasiController.selected.idMateriaI}" title="#{bundle.ViewMateriasiTitle_idMateriaI}"/>
+                        <h:outputText value="#{bundle.ViewMateriasiLabel_nombre}"/>
+                        <h:outputText value="#{materiasiController.selected.nombre}" title="#{bundle.ViewMateriasiTitle_nombre}"/>
+                        <h:outputText value="#{bundle.ViewMateriasiLabel_clave}"/>
+                        <h:outputText value="#{materiasiController.selected.clave}" title="#{bundle.ViewMateriasiTitle_clave}"/>
+                        <h:outputText value="#{bundle.ViewMateriasiLabel_creditos}"/>
+                        <h:outputText value="#{materiasiController.selected.creditos}" title="#{bundle.ViewMateriasiTitle_creditos}"/>
+                        <h:outputText value="#{bundle.ViewMateriasiLabel_idPlanI}"/>
+                        <h:outputText value="#{materiasiController.selected.idPlanI}" title="#{bundle.ViewMateriasiTitle_idPlanI}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="MateriasiViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

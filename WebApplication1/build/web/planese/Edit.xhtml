@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="PlaneseEditDlg" widgetVar="PlaneseEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditPlaneseTitle}">
+            <h:form id="PlaneseEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{planeseController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditPlaneseLabel_idPlanE}" for="idPlanE" />
+                        <p:inputText id="idPlanE" value="#{planeseController.selected.idPlanE}" title="#{bundle.EditPlaneseTitle_idPlanE}" required="true" requiredMessage="#{bundle.EditPlaneseRequiredMessage_idPlanE}"/>
+                        <p:outputLabel value="#{bundle.EditPlaneseLabel_nombre}" for="nombre" />
+                        <p:inputText id="nombre" value="#{planeseController.selected.nombre}" title="#{bundle.EditPlaneseTitle_nombre}" />
+                        <p:outputLabel value="#{bundle.EditPlaneseLabel_clave}" for="clave" />
+                        <p:inputText id="clave" value="#{planeseController.selected.clave}" title="#{bundle.EditPlaneseTitle_clave}" />
+                        <p:outputLabel value="#{bundle.EditPlaneseLabel_idEscuelaExt}" for="idEscuelaExt" />
+                        <p:selectOneMenu id="idEscuelaExt" value="#{planeseController.selected.idEscuelaExt}" required="true" requiredMessage="#{bundle.EditPlaneseRequiredMessage_idEscuelaExt}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{escuelasextController.itemsAvailableSelectOne}"
+                                           var="idEscuelaExtItem"
+                                           itemValue="#{idEscuelaExtItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{planeseController.update}" value="#{bundle.Save}" update="display,:PlaneseListForm:datalist,:growl" oncomplete="handleSubmit(args, 'PlaneseEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="PlaneseEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>
